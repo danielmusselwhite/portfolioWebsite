@@ -1,10 +1,19 @@
 import React from 'react'
 
+import { About, Header, Footer, Testimonials, Work, Skills, WorkExperience} from './container';
+import { Navbar } from './components';
+
 const App = () => {
     return(
-        <div>
-            <h1>My React App</h1>
-            <p>Hello World</p>
+        <div className="app">
+            <Navbar />
+            <Header />
+            <About />
+            <Work />
+            <Skills />
+            <WorkExperience />
+            <Testimonials />
+            <Footer />
         </div>
     );
 }
