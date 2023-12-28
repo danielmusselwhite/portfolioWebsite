@@ -2,35 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
+import {useWindowResize, arrayOfSections} from '../../utils/utils'; // Import the custom hook (event listener) for window resize event
 import { images } from '../../constants';
 import './Navbar.scss';
 
-const arrayOfSections = ['home', 'about', 'work', 'skills', 'work experience', 'testimonials', 'contact'];
-
-
-
 const Navbar = () => {
     const [toggle, setToggle] = useState(false); // Toggle for hamburger menu
-    const [initialX, setInitialX] = useState<number>(0); // the width of the window, updated on any resize event
 
-    // Update the width of the window on resize event
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setInitialX(width > 900 ? 0 : width);
-        };
-
-        // initialize setInitialX
-        handleResize();
-
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup function to remove event listener
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    // Set initialX to value of useWindowResize() (custom hook listening for window resize event)
+    // This will update the value of initialX when the window is resized
+    const initialX = useWindowResize(); // used to animate the menu, sliding in from the left ensuring it starts from correct size
     
     // Main code of NavBar
     return(

@@ -66,7 +66,7 @@
         text-transform: uppercase;
         font-weight: 500;
   
-        transition: all 0.8s ease-in-out;
+        transition: all 0.4s ease-in-out;
   
         &:hover {
           color: var(--secondary-color);
@@ -80,8 +80,8 @@
       }
     }
   
-    /* Only show the horizontal menu when screen is wider than 900px */
-    @media screen and (max-width: 900px) {
+    /* Only show the horizontal menu when screen is wider than 1200px */
+    @media screen and (max-width: 1200px) {
       display: none;
     }
   }
@@ -121,11 +121,11 @@
       align-items: flex-end;
       flex-direction: column;
       
-      background: url('../../assets/images/bgWhite.png'); // the image shown at bottom
+      background: url('../../assets/images/bgWhite.png'); // the image (img) shown at bottom
       background-color: var(--white-color);
       background-size: cover;
       background-repeat: repeat;
-  
+      
       // /* top box shadow */
       // box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
       box-shadow: 0 4px 16px 4px rgba(135, 31, 31, 0.37);
@@ -159,7 +159,7 @@
             text-transform: uppercase;
             font-weight: 500;
   
-            transition: all 0.8s ease-in-out;
+            transition: all 0.4s ease-in-out;
   
             &:hover {
               color: var(--secondary-color);
@@ -168,14 +168,14 @@
         }
       }
   
-      /* Only show the vertical menu when screen is narrower than 900px */
-      @media screen and (min-width: 900px) {
+      /* Only show the vertical menu when screen is narrower than 1200px */
+      @media screen and (min-width: 1200px) {
         display: none;
       }
     }
   
-    /* Only show the hamburger menu when screen is narrower than 900px */
-    @media screen and (min-width: 900px) {
+    /* Only show the hamburger menu when screen is narrower than 1200px */
+    @media screen and (min-width: 1200px) {
       display: none;
     }
   }
