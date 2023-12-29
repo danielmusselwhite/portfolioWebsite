@@ -26,7 +26,8 @@ const Navbar = () => {
                 {arrayOfSections.map((item) => (
                     <li className="app__flex p-text" key={`link-${item}`}>
                     <div />
-                    <a href={`#${item}`}>{item}</a>
+                    {/* link to scroll to a subsection of the page */}
+                    <a href={`#${item}`}>{item}</a> 
                     </li>
                     ))}
             </ul>
@@ -49,6 +50,7 @@ const Navbar = () => {
                     <ul> {/*populating list of menu items*/}
                     {arrayOfSections.map((item) => (
                         <li key={item}>
+                        {/* link to scroll to a subsection of the page */}
                         <a href={`#${item}`} onClick={() => setToggle(false)}> {/*Toggle False when menu item is clicked, as we don't want menu to still appear after navigating*/}
                             {item}
                         </a>

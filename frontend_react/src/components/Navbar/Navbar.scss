@@ -80,8 +80,8 @@
       }
     }
   
-    /* Only show the horizontal menu when screen is wider than 1200px */
-    @media screen and (max-width: 1200px) {
+    /* Only show the horizontal menu when screen is wider than 900px */
+    @media screen and (max-width: 900px) {
       display: none;
     }
   }
@@ -168,14 +168,14 @@
         }
       }
   
-      /* Only show the vertical menu when screen is narrower than 1200px */
-      @media screen and (min-width: 1200px) {
+      /* Only show the vertical menu when screen is narrower than 900px */
+      @media screen and (min-width: 900px) {
         display: none;
       }
     }
   
-    /* Only show the hamburger menu when screen is narrower than 1200px */
-    @media screen and (min-width: 1200px) {
+    /* Only show the hamburger menu when screen is narrower than 900px */
+    @media screen and (min-width: 900px) {
       display: none;
     }
   }

@@ -41,6 +41,12 @@ const Header = () => (
                 <p className="p-text">FullStack Developer</p>
                 <p className="p-text">BackEnd Specialist</p>
             </div>
+
+            <div className="tag-cmp app__flex">
+                <p className="p-text">MSc in Software Engineering</p>
+                <p className="p-text">BSc in Artificial Intelligence</p>
+            </div>
+
             </div>
         </motion.div>
 
