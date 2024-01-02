@@ -82,7 +82,11 @@ const About = () => {
                             opacity: [0,0.95],  
                             transition:{ duration: 0.8, type: 'easeInOut' }}
                         }
-                        whileHover={ selectedItem !== index ? {scale: 1.1} : {scale: 1.5} }
+                        whileHover={ 
+                            selectedItem !== index 
+                                ? {scale: 1.1, cursor: 'pointer'} 
+                                : {scale: 1.5, cursor: 'pointer'}
+                         }
                         transition={{ duration: 0.5, type: 'tween' }}
                         className="app__profile-item"
                         key={about.title + index}

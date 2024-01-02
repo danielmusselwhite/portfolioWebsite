@@ -35,18 +35,18 @@ const Navbar = () => {
             
             {/* The hamburger menu (if screen is too narrow eg for mobiles) */}
             <div className="app__navbar-menu">
-                <HiMenuAlt4 onClick={() => setToggle(true)} /> {/*Toggle True when hamburger is clicked*/}
+                
+                <HiMenuAlt4 style={{ cursor: "pointer" }} onClick={() => setToggle(true)} /> {/*Toggle True when hamburger is clicked*/}
 
                 {/* When toggle is true (hamburger has been clicked), show the menu */}
-                {toggle && (
-
-                /*Animate the menu, scrolling in*/
+           
+                
                 <motion.div 
-                    initial={{ x: initialX }} // Initial position outside the view
-                    animate={{ x: 0 }} // Animation to slide in
-                    transition={{ duration: 0.5, ease: 'easeIn' }}
+                    initial={ toggle ? {x: initialX} : {x:0} } // if toggle is true, set the x to initialX (not currently seen), else set x to 0 (currently seen so slide out)
+                    animate={ toggle ? {x: 0} : {x:initialX} } // if toggle is true, set the x to 0 (position to be seen), else set x to initialX (back to being hidden)
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                    <HiX onClick={() => setToggle(false)} /> {/*Toggle False when X button is clicked*/}
+                    <HiX style={{ cursor: "pointer" }} onClick={() => setToggle(false)} /> {/*Toggle False when X button is clicked*/}
                     <ul> {/*populating list of menu items*/}
                     {arrayOfSections.map((item) => (
                         <li key={item}>
@@ -58,7 +58,7 @@ const Navbar = () => {
                     ))}
                     </ul>
                 </motion.div>
-                )}
+               
             </div>
 
         </nav>
