@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import {arrayOfSections} from '../../utils/utils';
 import { images } from '../../constants';
 import './Header.scss';
 

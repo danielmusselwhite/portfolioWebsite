@@ -1,3 +1,16 @@
+# To Run Website Locally:
+
+1. enter sanity directory via "cd backend_sanity"
+2. run sanity via "sanity start"
+3. enter react directory via "cd frontend_react"
+4. run react via "npm start"
+
+# Flowchart
+
+![Diagram](./_docs/img/architecture.png)
+
+- Flow chart explaining basic architecture of the app
+
 # CMS
 
 ## Sanity CMS

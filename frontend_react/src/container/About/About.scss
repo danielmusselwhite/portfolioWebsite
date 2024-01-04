@@ -9,20 +9,25 @@
   }
   
   .app__profiles {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1rem)); /* Adjust the column width as needed */
+    gap:20px;
+    justify-content: center; /* Horizontally center items */
+    align-content: start; /* Align items at the top of the grid */
+
+    @media screen and (min-width: 2000px) {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 280px)); /* Adjust for larger screen size */
+    }
   }
   
   .app__profile-item {
-    width: 190px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     margin: 2rem;
+    height:fit-content;
     
     padding: 0.5rem;
     background: (rgb(255, 241, 241)); // color of the badge
@@ -37,17 +42,24 @@
     }
   
     @media screen and (min-width: 2000px) {
-      width: 300px;
       margin: 2rem 4rem;
+      
+      h2{
+        font-size: 1.5rem;
+      }
+
+      p{
+        font-size: 1.2rem;
+      }
   
       img {
-        height: 320px;
+        height: 280px;
       }
     }
 
     @media screen and (max-width: 900px) {
-        width: 140px;
         margin: 1rem 2rem;
+        
         h2{
             font-size: 0.8rem;
         
@@ -57,7 +69,7 @@
         }
 
         img{
-            height: 120px;
+            height: 180px;
         }
 
       }
