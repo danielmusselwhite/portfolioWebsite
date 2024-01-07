@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { images } from '../../constants';
 import './Header.scss';
 
+import { AppWrap } from '../../wrapper';
+
 // scaleVariants constant used for animating the circles containing the programming languages
 const scaleVariants = {
   whileInView: {
@@ -18,7 +20,7 @@ const scaleVariants = {
 
 // Header component
 const Header = () => (
-    <div id="home" className="app__header app__flex">
+    <div className="app__header app__flex">
 
         {/* Div animating from left to opaque, containing name + description badge */}
         <motion.div
@@ -85,4 +87,4 @@ const Header = () => (
     </div>
 );
 
-export default Header;
+export default AppWrap(Header, 'home', ['app__header']);

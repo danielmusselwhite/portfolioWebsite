@@ -2,6 +2,8 @@ import React from 'react';
 
 import './WorkExperience.scss';
 
+import { AppWrap } from '../../wrapper';
+
 const WorkExperience = () => {
     return(
         <div className="WorkExperience">
@@ -10,4 +12,5 @@ const WorkExperience = () => {
         </div>
     );
 }
-export default WorkExperience;
+
+export default AppWrap(WorkExperience, 'workExperience', ['app__flex']);

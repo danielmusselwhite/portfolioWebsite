@@ -2,6 +2,8 @@ import React from 'react';
 
 import './Testimonials.scss';
 
+import { AppWrap } from '../../wrapper';
+
 const Testimonials = () => {
     return(
         <div className="Testimonials">
@@ -10,4 +12,5 @@ const Testimonials = () => {
         </div>
     );
 }
-export default Testimonials;
+
+export default AppWrap(Testimonials, 'testimonials', ['app__flex']);

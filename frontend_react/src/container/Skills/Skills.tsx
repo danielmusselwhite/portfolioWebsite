@@ -2,6 +2,8 @@ import React from 'react';
 
 import './Skills.scss';
 
+import { AppWrap } from '../../wrapper';
+
 const Skills = () => {
     return(
         <div className="Skills">
@@ -10,4 +12,5 @@ const Skills = () => {
         </div>
     );
 }
-export default Skills;
+
+export default AppWrap(Skills, 'skills', ['app__flex']);

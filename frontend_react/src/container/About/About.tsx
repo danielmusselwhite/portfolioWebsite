@@ -5,6 +5,8 @@ import './About.scss';
 import {useWindowResize} from '../../utils/utils'; // Import the custom hook (event listener) for window resize event
 import { urlFor, client } from '../../client'; // Import the sanity client and urlFor function to get content from sanity
 
+import { AppWrap } from '../../wrapper';
+
 //todo - in sanity update the abouts
 
 // defining custom About type matching up the one used in Sanity
@@ -139,7 +141,7 @@ const About = () => {
     };
 
     return (
-        <div id="about">
+        <div>
             <h2 className="head-text">
                 Inspired To Build <span>Innovative</span> Solutions To <span>Your</span> Problems
             </h2>
@@ -181,4 +183,5 @@ const About = () => {
         </div>
     );
 };
-export default About;
+
+export default AppWrap(About, 'about', ['app__about']); // Wrapping the About component in the AppWrap component, passing in the idName and classNames

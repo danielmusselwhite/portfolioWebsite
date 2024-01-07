@@ -2,6 +2,8 @@ import React from 'react';
 
 import './Footer.scss';
 
+import { AppWrap } from '../../wrapper';
+
 const Footer = () => {
     return(
         <div className="Footer">
@@ -10,4 +12,5 @@ const Footer = () => {
         </div>
     );
 }
-export default Footer;
+
+export default AppWrap(Footer, 'footer', ['app__flex']);
