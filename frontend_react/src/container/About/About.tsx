@@ -116,6 +116,28 @@ const About = () => {
     // #endregion
     // #endregion
 
+    // Function to replace HTML-like tags with their respective elements
+    const renderHTML = (text: string) => {
+        const regex = /<([^>]+)>/g; // Regular expression to match anything within angle brackets
+        const matches = text.split(regex); // Split the text based on matches
+        
+        return matches.map((part, index) => {
+            // Check if the part is an HTML-like tag
+            if (index % 2 === 1) {
+                // Replace with corresponding React element
+                switch (part.toLowerCase()) {
+                    case 'br':
+                        return <br key={index} />;
+                    // Add cases for other tags if needed
+                    default:
+                        return null; // Or handle unrecognized tags differently
+                }
+            } else {
+                return part; // Return non-tag parts as they are
+            }
+        });
+    };
+
     return (
         <div id="about">
             <h2 className="head-text">
@@ -146,7 +168,10 @@ const About = () => {
                         {
                             selectedItem === index && (
                                 <div style={{ overflowY: 'auto', maxHeight: '200px', width: '100%' }}>
-                                    <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
+                                    {/* Replacing <br> with actual line breaks */}
+                                    <p className="p-text" style={{ marginTop: 10 }}>
+                                        {renderHTML(about.description)}
+                                    </p>
                                 </div>
                             )
                         }
