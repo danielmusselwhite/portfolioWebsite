@@ -5,11 +5,14 @@ import './About.scss';
 import {useWindowResize} from '../../utils/utils'; // Import the custom hook (event listener) for window resize event
 import { urlFor, client } from '../../client'; // Import the sanity client and urlFor function to get content from sanity
 
+//todo - in sanity update the abouts
+
 // defining custom About type matching up the one used in Sanity
 type About = {
     title: string;
     imgUrl: string;
     description: string;
+    numericalOrder: number;
   };
 
 const About = () => {
@@ -24,7 +27,8 @@ const About = () => {
         // fetch data from sanity using the query and populate the abouts array of objects
         client.fetch(query).then((data) => {
             console.log(data);
-        setAbouts(data);
+            const sortedData = data.sort((a: About, b: About) => a.numericalOrder - b.numericalOrder); // sort the abouts by numericalOrder
+            setAbouts(sortedData);
         });
     }, []);
     // #endregion
@@ -70,9 +74,8 @@ const About = () => {
         // else, return deselected animation properties
         return {
             width: '100%',
-            x:0,
             scale: 1,
-            zIndex: 1,
+            zIndex: 1, // todo - make it change to z after animation ahs finished
             transition: { duration: 0.2, type: 'tween' },
         };
     };

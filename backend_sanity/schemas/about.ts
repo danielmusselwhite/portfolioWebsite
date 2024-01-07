@@ -21,6 +21,11 @@ export default{
               hotspot: true,
             },
         },
+        {
+            name:'numericalOrder',
+            title:'Numerical Order',
+            type:'number'
+        }
         
     ]
 }
