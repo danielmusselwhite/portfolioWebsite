@@ -8,7 +8,7 @@ const NavigationDots = ({ active }: { active: string }) => {
                     href={`#${section}`}
                     key={section + index}
                     className="app__navigation-dot"
-                    style={active === section ? { backgroundColor: 'hsl(0, 100%, 50%)' } : {}}
+                    style={{ zIndex: 3, ...(active === section ? { backgroundColor: 'hsl(0, 100%, 50%)' } : {}) }} // zIndex is 3 + if the active section is the current section, set the background color to the primary color
               />
             ))}
         </div>
