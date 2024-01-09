@@ -57,13 +57,14 @@ const Work = () => {
     return(
         <div>
             <h2 className="head-text">
-                <span>Portfolio</span> Of My Recent <span>Personal Projects</span>
+                <span>Portfolio</span> Of My Recent <span>Works</span>
             </h2>
 
             <div className="app__work-filter">
                 {
                     // create array of all of the unique 'tags' for all elements in works + 'All' and map over them to create a filter item for each
-                    [...new Set(works.flatMap(work => work.tags)), 'All'].sort().map((item, index) => (
+                    //[...new Set(works.flatMap(work => work.tags)), 'All'].map((item, index) => (
+                    [...new Set(works.flatMap(work => work.tags))].sort().concat(["All"]).map((item, index) => (
                         <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => handleWorkFilter(item)}>
                             <p>{item}</p>
                         </div>
@@ -83,27 +84,32 @@ const Work = () => {
                                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                                 className="app__work-hover app__flex"
                             >
-                                <a href={work.projectLink} target="_blank" rel="noreferrer">
+                                {work.projectLink && (
+                                    <a href={work.projectLink} target="_blank" rel="noreferrer">
+                                        <motion.div
+                                            whileInView={{ scale: [0, 1] }}
+                                            whileHover={{ scale: [1, 0.90] }}
+                                            transition={{ duration: 0.25 }}
+                                            className="app__flex"
+                                        >
+                                            <AiFillEye />
+                                        </motion.div>
+                                    </a>
+                                )}
 
-                                <motion.div
-                                    whileInView={{ scale: [0, 1] }}
-                                    whileHover={{ scale: [1, 0.90] }}
-                                    transition={{ duration: 0.25 }}
-                                    className="app__flex"
-                                >
-                                    <AiFillEye />
-                                </motion.div>
-                                </a>
-                                <a href={work.codeLink} target="_blank" rel="noreferrer">
-                                <motion.div
-                                    whileInView={{ scale: [0, 1] }}
-                                    whileHover={{ scale: [1, 0.90] }}
-                                    transition={{ duration: 0.25 }}
-                                    className="app__flex"
-                                >
-                                    <AiFillGithub />
-                                </motion.div>
-                                </a>
+
+                                {work.codeLink && (
+                                    <a href={work.codeLink} target="_blank" rel="noreferrer">
+                                        <motion.div
+                                            whileInView={{ scale: [0, 1] }}
+                                            whileHover={{ scale: [1, 0.90] }}
+                                            transition={{ duration: 0.25 }}
+                                            className="app__flex"
+                                        >
+                                            <AiFillGithub />
+                                        </motion.div>
+                                    </a>
+                                )}
                             </motion.div>
                         </div>
 
