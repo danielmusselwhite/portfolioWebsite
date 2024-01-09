@@ -25,6 +25,7 @@ const Work = () => {
     const [works, setWorks] = useState<Work[]>([]); // Provide the correct type for the works state variable
     const [filterWork, setFilterWork] = useState<Work[]>([]); // Provide the correct type for the filterWork state variable
 
+    // useEffect to fetch data from sanity
     useEffect(() => {
         const query = '*[_type == "works"]'; // query to get all work from sanity
 
@@ -36,22 +37,24 @@ const Work = () => {
 
     }, []);
 
-    // #endregion
 
+    // Function to handle the filter of the work items
     const handleWorkFilter = (item: any) => {
-        setActiveFilter(item);
-        setAnimateCard({ y: 100, opacity: 0 });
+        setActiveFilter(item); // Set the active filter to the item that was clicked on
+        setAnimateCard({ y: 100, opacity: 0 }); // Animate the work items out of the screen
     
-        setTimeout(() => {
-        setAnimateCard({ y: 0, opacity: 1 });
-    
-          if (item === 'All') {
-            setFilterWork(works);
-          } else {
-            setFilterWork(works.filter((work) => work.tags.includes(item)));
-          }
+        setTimeout(() => { // Set a timeout to allow the animation to finish before updating the filterWork state variable
+            setAnimateCard({ y: 0, opacity: 1 }); // Animate the work items back into the screen
+        
+            // If the item that was clicked on is 'All' then set the filterWork state variable to all of the work items, otherwise filter the work items based on the item that was clicked on
+            if (item === 'All') { 
+                setFilterWork(works);
+            } else {
+                setFilterWork(works.filter((work) => work.tags.includes(item)));
+            }
         }, 500);
     };
+    // #endregion
 
 
     return(
@@ -63,7 +66,7 @@ const Work = () => {
             <div className="app__work-filter">
                 {
                     // create array of all of the unique 'tags' for all elements in works + 'All' and map over them to create a filter item for each
-                    //[...new Set(works.flatMap(work => work.tags)), 'All'].map((item, index) => (
+                    // used to filter the work item cards
                     [...new Set(works.flatMap(work => work.tags))].sort().concat(["All"]).map((item, index) => (
                         <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => handleWorkFilter(item)}>
                             <p>{item}</p>
@@ -74,16 +77,20 @@ const Work = () => {
 
             <motion.div animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}} className="app__work-portfolio">
 
+                {/* Mapping over the filterWork array to render a list of work items */}
                 {filterWork.map((work, index) => (
                     <div className="app__work-item app__flex" key={index}>
+                        {/* The Image and elements that overlay on it when hovered over */}
                         <div className="app__work-img app__flex">
                             <img src={urlFor(work.imgUrl).url()} alt={work.title} />
                             
+                            {/* hover shade block to mouse over the image, containing the github and project links */}
                             <motion.div
                                 whileHover={{ opacity: [0, 1] }}
                                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                                 className="app__work-hover app__flex"
                             >
+                                {/* Renders a link to the project if available. */}
                                 {work.projectLink && (
                                     <a href={work.projectLink} target="_blank" rel="noreferrer">
                                         <motion.div
@@ -97,7 +104,7 @@ const Work = () => {
                                     </a>
                                 )}
 
-
+                                {/* Renders a link to the code if available. */}
                                 {work.codeLink && (
                                     <a href={work.codeLink} target="_blank" rel="noreferrer">
                                         <motion.div
@@ -113,7 +120,7 @@ const Work = () => {
                             </motion.div>
                         </div>
 
-
+                        {/* The title and description displayed under the image*/}
                         <div className="app__work-content app__flex">
                             <h4 className="bold-text">{work.title}</h4>
                             <p className="p-text p-description" style={{ marginTop: 10 }}>{work.description}</p>
@@ -131,4 +138,4 @@ const Work = () => {
     );
 }
 
-export default AppWrap(Work, 'work', ['app__flex']);
+export default AppWrap(Work, 'work', ['app__work']);
