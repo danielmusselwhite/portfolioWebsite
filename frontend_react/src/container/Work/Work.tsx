@@ -25,32 +25,34 @@ const Work = () => {
     const [animateCard, setAnimateCard] = useState({y: 0, opacity: 1})
     const [works, setWorks] = useState<Work[]>([]);
     const [filterWork, setFilterWork] = useState<Work[]>([]); 
-    const [linkFilter, setLinkFilter] = useState('Both');
+    const [publicFilter, setPublicFilter] = useState<boolean>(true);
+    const [privateFilter, setPrivateFilter] = useState<boolean>(true);
 
-    // Function to toggle the link filter between Public, Private and Both
-    const toggleLinkFilter = () => {
-        let newFilter;
-        if (linkFilter === 'Public')
-            newFilter = 'Private';
-        
-        else if (linkFilter === 'Private') 
-            newFilter = 'Both';
-        else 
-            newFilter = 'Public';
-        
-        setLinkFilter(newFilter);
-        handleWorkFilter(newFilter, activeFilter);
+
+    // #region "Toggle" functions to handle the public and private filters and the tag filters
+    const togglePublicFilter = () => {
+        const newPublicFilter = !publicFilter;
+        setPublicFilter(newPublicFilter);
+        handleWorkFilter(activeFilter, newPublicFilter, privateFilter);
     };
 
-    // Function to toggle the selected tag
+    const togglePrivateFilter = () => {
+        const newPrivateFilter = !privateFilter;
+        setPrivateFilter(newPrivateFilter);
+        handleWorkFilter(activeFilter, publicFilter, newPrivateFilter);
+    };
+    // #endregion
+
     const toggleTag = (tag: string) => {
         if (activeFilter === tag) {
             // if item is already All, then do nothing; else set item to All
             if(activeFilter === 'All') return;
+            tag = 'All';
         }
         setActiveFilter(tag);
-        handleWorkFilter(linkFilter, tag);
+        handleWorkFilter(tag, publicFilter, privateFilter);
     };
+    
 
     // useEffect to fetch data from sanity
     useEffect(() => {
@@ -66,7 +68,7 @@ const Work = () => {
 
 
     // Function to handle the filter of the work items
-    const handleWorkFilter = (newFilter: string, newTag:string) => {
+    const handleWorkFilter = (newTag: string, newPublicFilter:boolean, newPrivateFilter:boolean) => {
 
         setAnimateCard({ y: 100, opacity: 0 }); // Animate the work items out of the screen
     
@@ -76,18 +78,16 @@ const Work = () => {
             // If the item that was clicked on is 'All' then set the filterWork state variable to all of the work items, otherwise filter the work items based on the item that was clicked on
             if (newTag === 'All') { 
                 setFilterWork(works.filter((work) =>
-                    newFilter === 'Public' ? work.projectLink || work.codeLink : 
-                        newFilter === 'Private' ? !work.projectLink && !work.codeLink : 
-                            true
+                    (newPublicFilter ? work.projectLink || work.codeLink : false) || // If the public filter is true then only show work items that have a projectLink or codeLink
+                    (newPrivateFilter ? !work.projectLink && !work.codeLink : false) // If the private filter is true then only show work items that do not have a projectLink or codeLink
                 ));
             } 
             else {
-                setFilterWork(works.filter((work) => 
+                setFilterWork(works.filter((work) =>
                     work.tags.includes(newTag) &&
                     (
-                        newFilter === 'Public' ? work.projectLink || work.codeLink : 
-                            newFilter === 'Private' ? !work.projectLink && !work.codeLink : 
-                                true
+                        (newPublicFilter ? work.projectLink || work.codeLink : false) || // If the public filter is true then only show work items that have a projectLink or codeLink
+                        (newPrivateFilter ? !work.projectLink && !work.codeLink : false) // If the private filter is true then only show work items that do not have a projectLink or codeLink
                     )
                 ));
             }
@@ -115,7 +115,8 @@ const Work = () => {
             </div>
 
             <div className="app__work-visibilityButton">
-                <button className="app__work-visibilityButton-btn" onClick={toggleLinkFilter}>{linkFilter}</button>
+                <button className={`app__work-visibilityButton-btn ${publicFilter === true ? 'active' : 'inactive'}`} onClick={togglePublicFilter}>Public</button>
+                <button className={`app__work-visibilityButton-btn ${privateFilter === true ? 'active' : 'inactive'}`} onClick={togglePrivateFilter}>Private</button>
             </div>
 
             <motion.div animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}} className="app__work-portfolio">

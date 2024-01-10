@@ -67,6 +67,7 @@
 
 .app__work-visibilityButton-btn {
   padding: 10px 20px;
+  margin: 10px;
   width: 5rem;
 
   background-color: var(--secondary-color);
@@ -80,12 +81,22 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  
+
   font-size: 16px;
   cursor: pointer;
 
+  &.active {
+    background-color: #ff0000;
+  }
+
+  &.inactive {
+    background-color: #666666;
+    opacity: 0.5;
+    cursor: default;
+  }
+
   &:hover {
-    background-color: #b15959;
+    background-color: #c23d3d;
   }
 }
 
