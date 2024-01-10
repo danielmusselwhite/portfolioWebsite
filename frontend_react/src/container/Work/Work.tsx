@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import { AppWrap} from '../../wrapper';
 import { urlFor, client } from '../../client'; // Import the sanity client and urlFor function to get content from sanity
+import renderHTML from '../../utils/htmlRender';
 
 import './Work.scss';
 
@@ -123,7 +124,7 @@ const Work = () => {
                         {/* The title and description displayed under the image*/}
                         <div className="app__work-content app__flex">
                             <h4 className="bold-text">{work.title}</h4>
-                            <p className="p-text p-description" style={{ marginTop: 10 }}>{work.description}</p>
+                            <p className="p-text p-description" style={{ marginTop: 10 }}>{renderHTML(work.description)}</p>
 
                             <div className="app__work-tag app__flex">
                                 <p className="p-text">{work.tags[0]}</p>
