@@ -24,6 +24,10 @@
   align-items: center;
   flex-wrap: wrap;
 
+  height: 110px;
+  overflow-y: auto;
+
+
   margin: 4rem 0 2rem;
 
   .app__work-filter-item {
@@ -58,7 +62,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;    
+  height:960px;
+  overflow-y: auto;
 
   .app__work-item {
     width: 270px;
@@ -110,7 +116,6 @@
 }
 .p-description {
     height:100px;
-    max-height: 100px;
     overflow-y: auto;
 }
 

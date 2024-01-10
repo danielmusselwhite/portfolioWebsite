@@ -1,6 +1,7 @@
 import React from 'react';
 
 const renderHTML = (text: string) => {
+    text = text.replace(/\t/g, '⠀⠀'); // replace tabs with 4 spaces
     const regex = /<([^>]+)>/g;
     const matches = text.split(regex);
 

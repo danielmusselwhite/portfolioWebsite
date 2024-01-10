@@ -41,6 +41,15 @@ const Work = () => {
 
     // Function to handle the filter of the work items
     const handleWorkFilter = (item: any) => {
+
+        // if we have clicked the same (already active) item, then instead deselect it and show all items
+        if(activeFilter === item){
+            // if item is already All, then do nothing
+            if(item === 'All') return;
+            // else set item to All
+            item = 'All';
+        }
+
         setActiveFilter(item); // Set the active filter to the item that was clicked on
         setAnimateCard({ y: 100, opacity: 0 }); // Animate the work items out of the screen
     
