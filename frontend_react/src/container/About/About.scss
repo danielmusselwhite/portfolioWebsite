@@ -11,6 +11,19 @@
   }
 }
 
+.popupContent {
+  cursor: pointer;
+  transition: all 0.8s; // Add transition property for smooth transition
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:not(:hover) {
+    transform: scale(1);
+  }
+}
+
 .app__about {
     flex: 1;
     width: 100%;

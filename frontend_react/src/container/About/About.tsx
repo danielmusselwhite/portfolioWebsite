@@ -63,18 +63,11 @@ const About = () => {
     const Popup = ({ content }: { content: About}) => {
         return (
           <div className="popupAbout">
-            <motion.div
-                        whileHover={ 
-                            {scale: 1.1, 
-                            cursor: 'pointer',
-                            transition: { duration: 0.5, type: 'tween' }
-                        }}
-                        onClick={() => handleClickPopup()} // onClick event handler to handle selecting and deselecting an item
-                    >
+            <div className="popupContent" onClick={() => handleClickPopup()}>
               <h2>{content.title}</h2>
               <img src={urlFor(content.imgUrl).url()} alt={content.title} />
               <p>{renderHTML(content.description)}</p>
-            </motion.div>
+            </div>
           </div>
         );
       };
