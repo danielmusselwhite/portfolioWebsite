@@ -23,8 +23,34 @@ const Work = () => {
     // #region Logic to fetch and filter data from sanity
     const [activeFilter, setActiveFilter] = useState('All');
     const [animateCard, setAnimateCard] = useState({y: 0, opacity: 1})
-    const [works, setWorks] = useState<Work[]>([]); // Provide the correct type for the works state variable
-    const [filterWork, setFilterWork] = useState<Work[]>([]); // Provide the correct type for the filterWork state variable
+    const [works, setWorks] = useState<Work[]>([]);
+    const [filterWork, setFilterWork] = useState<Work[]>([]); 
+    const [linkFilter, setLinkFilter] = useState('Both');
+
+    // Function to toggle the link filter between Public, Private and Both
+    const toggleLinkFilter = () => {
+        let newFilter;
+        if (linkFilter === 'Public')
+            newFilter = 'Private';
+        
+        else if (linkFilter === 'Private') 
+            newFilter = 'Both';
+        else 
+            newFilter = 'Public';
+        
+        setLinkFilter(newFilter);
+        handleWorkFilter(newFilter, activeFilter);
+    };
+
+    // Function to toggle the selected tag
+    const toggleTag = (tag: string) => {
+        if (activeFilter === tag) {
+            // if item is already All, then do nothing; else set item to All
+            if(activeFilter === 'All') return;
+        }
+        setActiveFilter(tag);
+        handleWorkFilter(linkFilter, tag);
+    };
 
     // useEffect to fetch data from sanity
     useEffect(() => {
@@ -40,27 +66,30 @@ const Work = () => {
 
 
     // Function to handle the filter of the work items
-    const handleWorkFilter = (item: any) => {
+    const handleWorkFilter = (newFilter: string, newTag:string) => {
 
-        // if we have clicked the same (already active) item, then instead deselect it and show all items
-        if(activeFilter === item){
-            // if item is already All, then do nothing
-            if(item === 'All') return;
-            // else set item to All
-            item = 'All';
-        }
-
-        setActiveFilter(item); // Set the active filter to the item that was clicked on
         setAnimateCard({ y: 100, opacity: 0 }); // Animate the work items out of the screen
     
         setTimeout(() => { // Set a timeout to allow the animation to finish before updating the filterWork state variable
             setAnimateCard({ y: 0, opacity: 1 }); // Animate the work items back into the screen
         
             // If the item that was clicked on is 'All' then set the filterWork state variable to all of the work items, otherwise filter the work items based on the item that was clicked on
-            if (item === 'All') { 
-                setFilterWork(works);
-            } else {
-                setFilterWork(works.filter((work) => work.tags.includes(item)));
+            if (newTag === 'All') { 
+                setFilterWork(works.filter((work) =>
+                    newFilter === 'Public' ? work.projectLink || work.codeLink : 
+                        newFilter === 'Private' ? !work.projectLink && !work.codeLink : 
+                            true
+                ));
+            } 
+            else {
+                setFilterWork(works.filter((work) => 
+                    work.tags.includes(newTag) &&
+                    (
+                        newFilter === 'Public' ? work.projectLink || work.codeLink : 
+                            newFilter === 'Private' ? !work.projectLink && !work.codeLink : 
+                                true
+                    )
+                ));
             }
         }, 500);
     };
@@ -78,11 +107,15 @@ const Work = () => {
                     // create array of all of the unique 'tags' for all elements in works + 'All' and map over them to create a filter item for each
                     // used to filter the work item cards
                     [...new Set(works.flatMap(work => work.tags))].sort().concat(["All"]).map((item, index) => (
-                        <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => handleWorkFilter(item)}>
+                        <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => toggleTag(item)}>
                             <p>{item}</p>
                         </div>
                     ))
                 }
+            </div>
+
+            <div className="app__work-visibilityButton">
+                <button className="app__work-visibilityButton-btn" onClick={toggleLinkFilter}>{linkFilter}</button>
             </div>
 
             <motion.div animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}} className="app__work-portfolio">

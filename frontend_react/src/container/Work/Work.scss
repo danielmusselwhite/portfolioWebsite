@@ -42,7 +42,7 @@
     margin: 0.5rem;
 
     &:hover {
-      background-color: #a14444;
+      background-color: #b15959;
       color: #fff;
     }
 
@@ -58,6 +58,43 @@
   }
 }
 
+.app__work-visibilityButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.app__work-visibilityButton-btn {
+  padding: 10px 20px;
+  width: 5rem;
+
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #b15959;
+  }
+}
+
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this value to fit your layout */
+}
 .app__work-portfolio {
   display: flex;
   flex-wrap: wrap;
