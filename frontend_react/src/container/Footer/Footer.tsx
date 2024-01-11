@@ -13,4 +13,4 @@ const Footer = () => {
     );
 }
 
-export default AppWrap(Footer, 'footer', ['app__flex']);
+export default AppWrap(Footer, 'footer', ['app__footer']);

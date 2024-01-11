@@ -13,4 +13,4 @@ const Skills = () => {
     );
 }
 
-export default AppWrap(Skills, 'skills', ['app__flex']);
+export default AppWrap(Skills, 'skills', ['app__skills']);

@@ -13,4 +13,4 @@ const WorkExperience = () => {
     );
 }
 
-export default AppWrap(WorkExperience, 'workExperience', ['app__flex']);
+export default AppWrap(WorkExperience, 'workExperience', ['app__workExperience']);

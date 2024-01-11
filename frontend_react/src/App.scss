@@ -150,16 +150,16 @@
   
   .navigation-dots {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column; /* Change flex direction to column */
+    flex-direction: column;
+    margin-top: 20rem;    
   
     .app__navigation-dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background-color: #cbcbcb;
-      margin: 0.5em 0; /* Adjust margin as needed */
+      margin: 0.5em 0;
   
       transition: background-color 0.2s ease-in-out;
   
