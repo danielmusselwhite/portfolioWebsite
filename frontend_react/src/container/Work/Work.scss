@@ -27,8 +27,11 @@
   height: 110px;
   overflow-y: auto;
 
+  background-color: #f0dbdb;
+  border-radius: 34px;
 
-  margin: 4rem 0 2rem;
+  margin: 0;
+  padding-top:5px;
 
   .app__work-filter-item {
     padding: 0.5rem 1rem;
@@ -58,46 +61,99 @@
   }
 }
 
-.app__work-visibilityButton {
+
+.app__work-visibilityButtonContainer {
+  width:100%;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+}
+
+
+.app__work-visibilityButton-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+  height: 80px;
+  padding: 10px;
+  margin: 1rem 4rem;
+  padding: 0.5rem;
+  background: (rgb(255, 245, 245)); // color of the badge
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+  
+  &:hover {
+    font-size: 1.2em; // Increase font size on hover
+  }
+
+  transition: all 0.3s ease;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+
+  .app__work-visibilityButton-btn {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 }
 
 .app__work-visibilityButton-btn {
-  padding: 10px 20px;
-  margin: 10px;
-  width: 5rem;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
-  background-color: var(--secondary-color);
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
+.app__work-visibilityButton-btn input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 16px;
+.slider {
+  position: absolute;
   cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
 
-  &.active {
-    background-color: #ff0000;
-  }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
 
-  &.inactive {
-    background-color: #666666;
-    opacity: 0.5;
-    cursor: default;
-  }
+input:checked + .slider {
+  background-color: #2196F3;
+}
 
-  &:hover {
-    background-color: #c23d3d;
-  }
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 .parent-container {
@@ -111,8 +167,11 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;    
-  height:960px;
+  height:500px;
   overflow-y: auto;
+  width: 98%;
+  background-color: #f0dbdb;
+  border-radius: 34px;
 
   .app__work-item {
     width: 360px;
@@ -137,7 +196,7 @@
       border-radius: 0.75rem;
     }
 
-    @media screen and (max-width: 300px) {
+    @media screen and (max-width: 900px) {
       width: 100%;
       margin: 1rem;
     }
@@ -145,8 +204,8 @@
 }
 
 .app__work-img {
-  width: 100%;
-  height: 300px;
+  width: 75%;
+  height: 240px;
 
   position: relative;
 
@@ -159,6 +218,11 @@
 
   @media screen and (min-width: 2000px) {
     height: 350px;
+  }
+
+  @media screen and (max-width: 900px){
+    height: 300px;
+    width: 50%;
   }
 
 }

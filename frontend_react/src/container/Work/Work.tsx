@@ -114,9 +114,21 @@ const Work = () => {
                 }
             </div>
 
-            <div className="app__work-visibilityButton">
-                <button className={`app__work-visibilityButton-btn ${publicFilter === true ? 'active' : 'inactive'}`} onClick={togglePublicFilter}>Public</button>
-                <button className={`app__work-visibilityButton-btn ${privateFilter === true ? 'active' : 'inactive'}`} onClick={togglePrivateFilter}>Private</button>
+            <div className="app__work-visibilityButtonContainer">
+                <div className="app__work-visibilityButton-div">
+                    <p>Public</p>
+                    <label className={`app__work-visibilityButton-btn ${publicFilter === true ? 'active' : 'inactive'}`}>
+                        <input type="checkbox" checked={publicFilter} onChange={togglePublicFilter} />
+                        <span className="slider round"></span>
+                    </label>
+                </div>
+                <div className="app__work-visibilityButton-div">
+                    <p>Private</p>
+                    <label className={`app__work-visibilityButton-btn ${privateFilter === true ? 'active' : 'inactive'}`}>
+                        <input type="checkbox" checked={privateFilter} onChange={togglePrivateFilter} />
+                        <span className="slider round"></span>
+                    </label>
+                </div>
             </div>
 
             <motion.div animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}} className="app__work-portfolio">
