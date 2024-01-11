@@ -131,8 +131,8 @@ const Work = () => {
                 </div>
             </div>
 
-            <motion.div animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}} className="app__work-portfolio">
-
+            <div className="app__work-portfolio-holder">
+                <motion.div className="app__work-portfolio" animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}}>
                 {/* Mapping over the filterWork array to render a list of work items */}
                 {filterWork.map((work, index) => (
                     <div className="app__work-item app__flex" key={index}>
@@ -187,8 +187,10 @@ const Work = () => {
                         </div>
                     </div>
                 ))}
+                <br></br>
+                </motion.div>
 
-            </motion.div>
+            </div>
 
         </div>
     );

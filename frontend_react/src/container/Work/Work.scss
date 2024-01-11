@@ -23,12 +23,15 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  width:98%;
 
   height: 110px;
   overflow-y: auto;
 
   background-color: #f0dbdb;
   border-radius: 34px;
+  
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 
   margin: 0;
   padding-top:5px;
@@ -85,9 +88,14 @@
   background: (rgb(255, 245, 245)); // color of the badge
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+
+  @media screen and (max-width: 900px) {
+    margin: 1rem;
+  }
   
   &:hover {
-    font-size: 1.2em; // Increase font size on hover
+    font-size: 1.2em;
+    box-shadow: 0px 0px 20px rgba(158, 14, 14, 0.8);  
   }
 
   transition: all 0.3s ease;
@@ -162,43 +170,55 @@ input:checked + .slider:before {
   align-items: center;
   height: 100vh; /* Adjust this value to fit your layout */
 }
-.app__work-portfolio {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;    
-  height:500px;
-  overflow-y: auto;
-  width: 98%;
+.app__work-portfolio-holder {
   background-color: #f0dbdb;
   border-radius: 34px;
+  width: 98%;    
+  height:520px;
+  overflow-y: scroll;
+  
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  
+  .app__work-portfolio{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
 
-  .app__work-item {
-    width: 360px;
-    flex-direction: column;
-
-    margin: 2rem;
-    padding: 0.5rem;
-    background: (rgb(255, 245, 245)); // color of the badge
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      scale: 1.1;
-    }
-
-    @media screen and (min-width: 2000px) {
-      width: 470px;
-      padding: 1.25rem;
-      border-radius: 0.75rem;
-    }
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-      margin: 1rem;
+    .app__work-item {
+      width: 360px;
+      flex-direction: column;
+  
+      margin: 2rem;
+      padding: 0.5rem;
+      background: (rgb(255, 245, 245)); // color of the badge
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+  
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        box-shadow: 0px 0px 20px rgba(158, 14, 14, 0.8);  
+      }
+  
+      @media screen and (min-width: 900px) {
+        &:hover {
+          scale: 1.1;
+        }
+      }
+  
+      @media screen and (min-width: 2000px) {
+        width: 470px;
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+      }
+  
+      @media screen and (max-width: 900px) {
+        width: 100%;
+        margin: 1rem;
+      }
     }
   }
 }
@@ -221,8 +241,8 @@ input:checked + .slider:before {
   }
 
   @media screen and (max-width: 900px){
-    height: 300px;
-    width: 50%;
+    height: 16rem;
+    width: auto;
   }
 
 }

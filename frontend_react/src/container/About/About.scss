@@ -17,6 +17,7 @@
 
   &:hover {
     transform: scale(1.1);
+    box-shadow: 0px 0px 20px rgba(158, 14, 14, 0.8);  
   }
 
   &:not(:hover) {
@@ -51,6 +52,10 @@
     background: (rgb(255, 245, 245)); // color of the badge
     border-radius: 15px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+
+    &:hover {
+      box-shadow: 0px 0px 20px rgba(158, 14, 14, 0.8);  
+    }
   
     img {
       width: 100%;
@@ -91,18 +96,32 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
       max-width: 800px; /* Adjust the maximum width of the popup content */
-      width: 80%;
+      width: 60%;
       max-height: 80%; /* Adjust the maximum height of the popup content */
-      overflow: auto; /* Enable scrolling if content exceeds max-height */
-        
 
+      p{
+        height: 200px;
+        overflow-y: auto; 
+        background-color: #f0dbdb;
+        border-radius: 34px;
+        padding: 1rem;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      }
+        
+    h2{
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
       
     // image
     img{
-      width: 70%;
-      height: 70%;
+      width: 50%;
+      height: 50%;
       border-radius: 15px;
       object-fit: cover;
+      padding: 20px;
+      border-radius: 100rem;
       margin: auto; /* Center the image horizontally */
       display: block; /* Ensure the image behaves properly */
     }
