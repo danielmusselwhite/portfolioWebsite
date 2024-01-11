@@ -25,4 +25,4 @@ export const useWindowResize = () => {
     return initialX;
 };
 
-export const arrayOfSections = ['home', 'about', 'work', 'skills', 'workExperience', 'contact'];
+export const arrayOfSections = ['home', 'about', 'work', 'skills', 'contact'];
