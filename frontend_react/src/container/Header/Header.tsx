@@ -74,7 +74,7 @@ const Header = () => {
                 className="app__header-info"
             >
                 <div className="app__header-badge">
-                <div className="badge-cmp app__flex"
+                <div className={"badge-cmp app__flex" + (emojiWhiteList ? " badge-cmp-go" : "")}
                     data-tip 
                     data-for='emojiToolTip'
                     key='emojiToolTip'>
