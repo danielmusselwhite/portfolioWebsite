@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { jarallax } from 'jarallax'; // Import Jarallax library
+import ReactTooltip from 'react-tooltip'; 
 
 import { images } from '../../constants';
 import './Header.scss';
@@ -23,11 +24,44 @@ const scaleVariants = {
 const Header = () => {
 
     useEffect(() => {
+        // Automatically update the emoji on component mount
+        updateEmoji();
+        updateEmojiWhiteList();
+
         // Initialize Jarallax when the component mounts
         if (typeof document !== 'undefined') {
             jarallax(document.querySelectorAll('.jarallax'), {});
         }
     }, []);
+
+
+    const [emoji, setEmoji] = useState('👋'); // Initial emoji state
+    const [emojiWhiteList, setEmojiWhiteList] = useState(''); // Initial emoji whitelist state
+    
+
+    // Function to fetch emoji from Go backend
+    const updateEmoji = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/get-emoji');
+            const data = await response.json();
+            setEmoji(data.emoji);
+        } catch (error) {
+            console.error('Error fetching emoji:', error);
+        }
+    };
+
+    // Function to fetch emojiWhitelist from Go backend
+    const updateEmojiWhiteList = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/get-emoji-whitelist');
+            const data = await response.json();
+            setEmojiWhiteList(data.emojiWhitelist);
+        } catch (error) {
+            // use wave emoji as default if error occurs
+            setEmojiWhiteList('');
+            console.error('Error fetching emoji whitelist:', error);
+        }
+    };
 
       
     return(
@@ -40,8 +74,26 @@ const Header = () => {
                 className="app__header-info"
             >
                 <div className="app__header-badge">
-                <div className="badge-cmp app__flex">
-                    <span>👋</span>
+                <div className="badge-cmp app__flex"
+                    data-tip 
+                    data-for='emojiToolTip'
+                    key='emojiToolTip'>
+                    <span className="emoji">
+                        {emoji}
+                    </span>
+
+                    {/* tooltip saying emoji is updateable only appears if the whitelist is not empty (initial go request succeeded) */}
+                    {emojiWhiteList && (
+                        <ReactTooltip
+                            id='emojiToolTip'
+                            effect="solid"
+                            arrowColor="#fff"
+                            className="skills-tooltip"
+                        >
+                            <p className="p-text" style={{"textAlign":"center"}}>You can update me with a POST request to set_emoji<br/>Valid Emoji's Below:<br/>{emojiWhiteList}</p>
+                        </ReactTooltip>
+                    )}
+
                     <div style={{ marginLeft: 20 }}>
                     <p className="p-text">Hello, I am</p>
                     <h1 className="head-text">Daniel</h1>
