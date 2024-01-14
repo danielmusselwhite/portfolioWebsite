@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Footer.scss';
 
-import { AppWrap } from '../../wrapper';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
 const Footer = () => {
     return(
@@ -13,4 +13,8 @@ const Footer = () => {
     );
 }
 
-export default AppWrap(Footer, 'footer', ['app__footer']);
+export default AppWrap(
+    MotionWrap(Footer, 'app__footer'),
+    'contact',
+    'app__primarybg',
+  );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
-import { AppWrap} from '../../wrapper';
+import { AppWrap, MotionWrap} from '../../wrapper';
 import { urlFor, client } from '../../client'; // Import the sanity client and urlFor function to get content from sanity
 import renderHTML from '../../utils/htmlRender';
 
@@ -196,4 +196,8 @@ const Work = () => {
     );
 }
 
-export default AppWrap(Work, 'work', ['app__work']);
+export default AppWrap(
+    MotionWrap(Work, 'app__work'),
+    'work',
+    'app__primarybg',
+  );

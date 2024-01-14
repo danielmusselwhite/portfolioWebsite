@@ -1,6 +1,6 @@
 import { NavigationDots, SocialMedia} from '../components';
 
-const AppWrap = (Component: any, idName: string, classNames: string[]) => function AppWrap() {
+const AppWrap = (Component: any, idName: string, classNames: string) => function AppWrap() {
     return (
         <div id={idName} className={`app__container ${classNames}`}>
           <SocialMedia />

@@ -5,7 +5,7 @@ import { jarallax } from 'jarallax'; // Import Jarallax library
 import { images } from '../../constants';
 import './Header.scss';
 
-import { AppWrap } from '../../wrapper';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
 // scaleVariants constant used for animating the circles containing the programming languages
 const scaleVariants = {
@@ -99,4 +99,8 @@ const Header = () => {
     );
 };
 
-export default AppWrap(Header, 'home', ['app__header']);
+export default AppWrap(
+    MotionWrap(Header, 'app__header'),
+    'home',
+    'app__primarybg',
+  );

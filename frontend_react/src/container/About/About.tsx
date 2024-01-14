@@ -6,7 +6,7 @@ import { urlFor, client } from '../../client'; // Import the sanity client and u
 import renderHTML from '../../utils/htmlRender';
 
 
-import { AppWrap } from '../../wrapper';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
 //todo - in sanity update the abouts
 
@@ -112,4 +112,8 @@ const About = () => {
     );
 };
 
-export default AppWrap(About, 'about', ['app__about']); // Wrapping the About component in the AppWrap component, passing in the idName and classNames
+export default AppWrap(
+    MotionWrap(About, 'app__about'),
+    'about',
+    'app__whitebg',
+);
