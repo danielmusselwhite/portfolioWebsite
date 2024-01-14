@@ -4,6 +4,8 @@
 2. run sanity via "sanity start"
 3. enter react directory via "cd frontend_react"
 4. run react via "npm start"
+5. enter go api directory via "cd api_go"
+6. run go via "go run main.go"
 
 # Flowchart
 
