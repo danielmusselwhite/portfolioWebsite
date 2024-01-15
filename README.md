@@ -1,25 +1,30 @@
-# To Run Website Locally:
-
-1. enter sanity directory via "cd backend_sanity"
-2. run sanity via "sanity start"
-3. enter react directory via "cd frontend_react"
-4. run react via "npm start"
-5. enter go api directory via "cd api_go"
-6. run go via "go run main.go"
-
 # Flowchart
 
 ![Diagram](./_docs/img/architecture.png)
 
 - Flow chart explaining basic architecture of the app
 
-# CMS
+# To Run Website Locally:
 
-## Sanity CMS
+## Automatic 
 
-- In `backend_sanity` directory, create a directory 'schemas', then inside of this create TypeScript files for each schema you want to create
-  - Schemas are the structure of the data that you want to store in Sanity
-    - Essentially simple easy to manage JSON Objects
-    
-- Run sanity locally: `sanity start` (in `backend_sanity` directory) to start the studio
-    - This will start the studio on `http://localhost:3333` and allow you to edit the schema
+1. in file-explorer navigate to /_misc/ then run startScript.ps1 to do all of the below automatically
+   
+## Manual
+
+1. Launch new Powershell Window in /backend_sanity/
+2. run sanity via "sanity start"
+   1. Hosts on http://localhost:3333
+3. Launch new Powershell Window in /frontend_react/
+4. run react via "npm start"
+   1. Hosts on http://localhost:3000
+5. Launch new Powershell Window in /api_go/
+6. run go via "go run main.go"
+   1. Hosts on http://localhost:8080
+
+
+
+# Postman Go API
+
+- Postman collection of sample requests if you would like to interact with it
+  - _misc\Portfolio.postman_collection.json
