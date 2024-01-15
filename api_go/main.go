@@ -12,7 +12,20 @@ import (
 var currentEmoji string = "👋"
 
 // Define a whitelist of common positive/friendly emojis
-var emojiWhitelist string = "😀😄😊🤩👋🙏✨💻👾"
+var emojiWhiteListDict = map[string]bool{
+	"👋":  true,
+	"✌️": true,
+	"👍":  true,
+	"👌":  true,
+	"😀":  true,
+	"😄":  true,
+	"😊":  true,
+	"🤩":  true,
+	"🙏":  true,
+	"✨":  true,
+	"💻":  true,
+	"👾":  true,
+}
 
 // Define a struct to represent the request body for setting the emoji
 type EmojiRequest struct {
@@ -47,22 +60,21 @@ func GetEmojiHandler(w http.ResponseWriter, r *http.Request) {
 
 // SetEmojiHandler sets the current emoji to the emoji specified in the request body if it is whitelisted
 func SetEmojiHandler(w http.ResponseWriter, r *http.Request) {
+	// Decode the request body into the EmojiRequest struct
 	var request EmojiRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	var retEmoji = isValidEmoji(request.Emoji)
-	if retEmoji == -1 {
-		http.Error(w, "Invalid emoji: must be a singular emoji", http.StatusBadRequest)
-		return
-	}
-	if retEmoji == -2 {
-		http.Error(w, "Invalid emoji "+request.Emoji+" : must be in whitelist", http.StatusBadRequest)
+	// Check if the emoji is in the whitelist
+	if isValidEmoji(request.Emoji) == -1 {
+		// Return an error if the emoji is not in the whitelist
+		http.Error(w, "Invalid Emoji is : not in whitelist", http.StatusBadRequest)
 		return
 	}
 
+	// Set the current emoji to the emoji specified in the request body
 	currentEmoji = request.Emoji
 
 	response := map[string]string{"message": "Emoji updated successfully"}
@@ -72,24 +84,28 @@ func SetEmojiHandler(w http.ResponseWriter, r *http.Request) {
 
 // GetEmojiWhiteListHandler returns the current emoji whitelist
 func GetEmojiWhiteListHandler(w http.ResponseWriter, r *http.Request) {
-	response := map[string]string{"emojiWhitelist": emojiWhitelist}
+	// Convert the emoji whitelist map to a string
+	keys := make([]string, 0, len(emojiWhiteListDict))
+	for k := range emojiWhiteListDict {
+		keys = append(keys, k)
+	}
+	emojiKeys := strings.Join(keys, "")
+
+	// Return the emoji whitelist
+	response := map[string]interface{}{"emojiWhitelist": emojiKeys}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
+
 // #endregion
 
 // helper funciton for determining if the emoji is valid
 func isValidEmoji(emoji string) int {
 
-	// check if the length of the emoji is 1
-	if len([]rune(emoji)) != 1 { // len([]rune(emoji)) returns the number of characters in the string, required as emojis don't have a fixed length
-		return -1
-	}
-
 	// Check if the emoji is in the whitelist
-	if !strings.Contains(emojiWhitelist, emoji) {
-		return -2
+	if _, ok := emojiWhiteListDict[emoji]; ok {
+		return 0
 	}
 
-	return 0
+	return -1
 }
