@@ -70,6 +70,15 @@
         height: 320px;
       }
     }
+
+    @media screen and (max-width: 900px) {
+      width: 140px;
+      margin: 1rem;
+  
+      img {
+        height: 100%;
+      }
+    }
   }
 
 
