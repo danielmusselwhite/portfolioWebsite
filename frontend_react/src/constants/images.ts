@@ -9,6 +9,8 @@ import ucl from '../assets/images/UCL.png';
 import backend from '../assets/images/backend.png';
 import frontend from '../assets/images/frontend.png';
 import cloud from '../assets/images/cloud.png';
+import email from '../assets/images/email.png';
+import mobile from '../assets/images/mobile.png';
 
 export default{
     logo,
@@ -21,5 +23,7 @@ export default{
     ucl,
     backend,
     frontend,
-    cloud
+    cloud,
+    email,
+    mobile
 };
