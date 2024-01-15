@@ -102,35 +102,41 @@ const Work = () => {
                 <span>Portfolio</span> Of My Recent <span>Works</span>
             </h2>
 
-            <div className="app__work-filter">
-                {
-                    // create array of all of the unique 'tags' for all elements in works + 'All' and map over them to create a filter item for each
-                    // used to filter the work item cards
-                    [...new Set(works.flatMap(work => work.tags))].sort().concat(["All"]).map((item, index) => (
-                        <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => toggleTag(item)}>
-                            <p>{item}</p>
-                        </div>
-                    ))
-                }
+            <div className="app__work-controls">
+
+                {/* The visibility toggles */}
+                <div className="app__work-visibilityButtonContainer">
+                    <div className="app__work-visibilityButton-div">
+                        <p>Public</p>
+                        <label className={`app__work-visibilityButton-btn ${publicFilter === true ? 'active' : 'inactive'}`}>
+                            <input type="checkbox" checked={publicFilter} onChange={togglePublicFilter} />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                    <div className="app__work-visibilityButton-div">
+                        <p>Private</p>
+                        <label className={`app__work-visibilityButton-btn ${privateFilter === true ? 'active' : 'inactive'}`}>
+                            <input type="checkbox" checked={privateFilter} onChange={togglePrivateFilter} />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                {/* The filters */}
+                <div className="app__work-filter">
+                    {
+                        // create array of all of the unique 'tags' for all elements in works + 'All' and map over them to create a filter item for each
+                        // used to filter the work item cards
+                        [...new Set(works.flatMap(work => work.tags))].sort().concat(["All"]).map((item, index) => (
+                            <div className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`} key={index} onClick={() => toggleTag(item)}>
+                                <p>{item}</p>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
 
-            <div className="app__work-visibilityButtonContainer">
-                <div className="app__work-visibilityButton-div">
-                    <p>Public</p>
-                    <label className={`app__work-visibilityButton-btn ${publicFilter === true ? 'active' : 'inactive'}`}>
-                        <input type="checkbox" checked={publicFilter} onChange={togglePublicFilter} />
-                        <span className="slider round"></span>
-                    </label>
-                </div>
-                <div className="app__work-visibilityButton-div">
-                    <p>Private</p>
-                    <label className={`app__work-visibilityButton-btn ${privateFilter === true ? 'active' : 'inactive'}`}>
-                        <input type="checkbox" checked={privateFilter} onChange={togglePrivateFilter} />
-                        <span className="slider round"></span>
-                    </label>
-                </div>
-            </div>
-
+            {/* The work items */}
             <div className="app__work-portfolio-holder">
                 <motion.div className="app__work-portfolio" animate={animateCard} transition={{ duration: 0.5, delayChildren: 0.5}}>
                 {/* Mapping over the filterWork array to render a list of work items */}

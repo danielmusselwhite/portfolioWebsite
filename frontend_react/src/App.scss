@@ -106,6 +106,12 @@
     flex-direction: column;
   
     padding: 1rem;
+
+    // screen is less than 900px, decrease margin and padding
+    @media screen and (max-width: 900px) {
+      margin: 0;
+      padding: 0.25rem;
+    }
   
     div {
       width: 40px;

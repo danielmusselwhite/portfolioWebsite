@@ -13,6 +13,23 @@
   flex: 1;
   width: 100%;
   flex-direction: column;
+
+  padding: 6rem 2rem 0rem;
+}
+
+.app__work-controls {
+  display: flex;
+  justify-content: space-between;
+  width:98%;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+
+  // when media screen is less than 900px, change the flex-direction to column
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0rem;
+  }
 }
 
 .app__work-filter {
@@ -64,12 +81,17 @@
 
 
 .app__work-visibilityButtonContainer {
-  width:100%;
+  width:fit-content;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-right:20px;
+
+  // when screen less than 900px remove padding-right
+  @media screen and (max-width: 900px) {
+    padding-right: 0;
+    padding-bottom:1rem;
+  }
 }
 
 
@@ -81,7 +103,7 @@
   width: 120px;
   height: 80px;
   padding: 10px;
-  margin: 1rem 4rem;
+  margin: 1rem 1rem;
   padding: 0.5rem;
   background: (rgb(255, 245, 245)); // color of the badge
   border-radius: 15px;
