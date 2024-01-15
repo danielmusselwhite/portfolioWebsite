@@ -89,6 +89,7 @@ const Header = () => {
                             effect="solid"
                             arrowColor="#fff"
                             className="skills-tooltip"
+                            place="bottom"
                         >
                             <p className="p-text" style={{"textAlign":"center"}}>You can update me with a POST request to set_emoji<br/>Valid Emoji's Below:<br/>{emojiWhiteList}</p>
                         </ReactTooltip>
