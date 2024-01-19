@@ -2,7 +2,7 @@
 
 ![Diagram](./_docs/img/architecture.png)
 
-- Flow chart explaining basic architecture of the app
+- Flow chart explaining basic architecture of the application
 
 # To Deploy:
 
