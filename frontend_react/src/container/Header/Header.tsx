@@ -42,7 +42,7 @@ const Header = () => {
     // Function to fetch emoji from Go backend
     const updateEmoji = async () => {
         try {
-            const response = await fetch('http://localhost:8080/get-emoji');
+            const response = await fetch('https://emojiapi-service-yegyl5lwfq-nw.a.run.app/get-emoji');
             const data = await response.json();
             setEmoji(data.emoji);
         } catch (error) {
@@ -53,7 +53,7 @@ const Header = () => {
     // Function to fetch emojiWhitelist from Go backend
     const updateEmojiWhiteList = async () => {
         try {
-            const response = await fetch('http://localhost:8080/get-emoji-whitelist');
+            const response = await fetch('https://emojiapi-service-yegyl5lwfq-nw.a.run.app/get-emoji-whitelist');
             const data = await response.json();
             setEmojiWhiteList(data.emojiWhitelist);
         } catch (error) {
@@ -91,7 +91,7 @@ const Header = () => {
                             className="skills-tooltip"
                             place="bottom"
                         >
-                            <p className="p-text" style={{"textAlign":"center"}}>You can update me with a POST request to set_emoji<br/>Valid Emoji's Below:<br/>{emojiWhiteList}</p>
+                            <p className="p-text" style={{"textAlign":"center"}}>You can update me with a POST request to:<br/>https://emojiapi-service-yegyl5lwfq-nw.a.run.app/set-emoji<br/>Valid Emoji's Below:<br/>{emojiWhiteList}</p>
                         </ReactTooltip>
                     )}
 
