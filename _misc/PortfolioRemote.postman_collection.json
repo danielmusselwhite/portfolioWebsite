@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "3e6461b4-fdd2-4f43-aec3-278a791cad43",
+		"name": "PortfolioRemote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28153040"
+	},
+	"item": [
+		{
+			"name": "Get Emoji",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get-emoji",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get-emoji"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Emoji WhiteList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get-emoji-whitelist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get-emoji-whitelist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Emoji",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emoji\":\"👋\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/set-emoji",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"set-emoji"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
